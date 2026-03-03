@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import { AggregatedData } from '../types';
 import { useThemeLanguage } from '../contexts/ThemeLanguageContext';
+import { CustomChartLegend } from './CustomChartLegend';
 
 interface AvailabilityChartProps {
   data: AggregatedData[];
@@ -95,6 +96,7 @@ const AvailabilityChart: React.FC<AvailabilityChartProps> = ({ data, title }) =>
           <Legend 
             onClick={toggleSeries} 
             wrapperStyle={{ paddingTop: '20px', cursor: 'pointer' }} 
+            content={<CustomChartLegend />}
           />
           
           <Bar 

@@ -7,6 +7,7 @@ export const CustomChartLegend = (props: any) => {
     <ul className="flex justify-center flex-wrap gap-4 pt-5 text-sm">
       {payload.map((entry: any, index: number) => {
         const isActual = entry.dataKey === 'kwhActual' || entry.dataKey === 'prActual' || entry.dataKey === 'ghiActual' || entry.dataKey === 'correctedPr';
+        const isHorizontalDash = entry.dataKey === 'paeGuaranteed' || entry.dataKey === 'contractorPrTarget' || entry.dataKey === 'guaranteedAvailability';
         
         return (
           <li 
@@ -21,6 +22,10 @@ export const CustomChartLegend = (props: any) => {
                 <span className="w-3 h-3 bg-amber-600 block rounded-sm"></span>
                 <span className="w-3 h-3 bg-red-600 block rounded-sm"></span>
               </div>
+            ) : isHorizontalDash ? (
+              <svg width="24" height="6" className="mr-2">
+                <line x1="2" y1="3" x2="22" y2="3" stroke={entry.color} strokeWidth="3" strokeLinecap="round" />
+              </svg>
             ) : entry.type === 'rect' ? (
               <span className="w-3 h-3 mr-2 block rounded-sm" style={{ backgroundColor: entry.color }}></span>
             ) : entry.type === 'line' ? (

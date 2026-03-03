@@ -26,7 +26,8 @@ import {
   startOfMonth, endOfMonth,
   startOfYear, endOfYear,
   getYear, getQuarter,
-  subYears, subMonths, subWeeks
+  subYears, subMonths, subWeeks,
+  endOfDay
 } from 'date-fns';
 import { useThemeLanguage } from '../contexts/ThemeLanguageContext';
 import clsx from 'clsx';
@@ -186,7 +187,7 @@ const Dashboard: React.FC<DashboardProps> = ({ initialData, onReset }) => {
   // Compute Result
   const result: SimulationResult = useMemo(() => {
     const start = parseISO(startDate);
-    const end = parseISO(endDate);
+    const end = endOfDay(parseISO(endDate));
     
     const filtered = initialData.filter(d => {
       const siteMatch = selectedSites.includes(d.siteName);
